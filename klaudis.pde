@@ -1,11 +1,11 @@
- PImage k;
+ PImage k,stock;
  void setup() {
- size(1080,680);
+ size(573,768);
  k = loadImage("IMG_3940.PNG");
-    k_array = new Klaud[10];
-    for (int i = 0; i < 10; i++) {
-        k_array[i] = new Klaud(random(width), random(height), 1.0,k);
-
+ stock = loadImage("IMG_3941.PNG");
+ k_array = new Klaud[10];
+ for (int i = 0; i < 10; i++) {     
+ k_array[i] = new Klaud(random(width)-200,-40, 0.0,k);
     }
  }
  class Klaud {
@@ -21,7 +21,7 @@
  image(this.k,this.x,this.y,270,200);
  }
   void mow(float _v) {
-      if(millis()>=5000) {_v=3;}
+      if(millis()>=5000) {_v=random(3);}
         this.x = this.x + _v;
     }
 }
@@ -29,8 +29,8 @@ Klaud[] k_array;
 
 
 void draw() {
-  
     background(0,255,255);
+    image(stock,0,0,573,768);
     for (int i = 0; i < 10; i++) {
      
         k_array[i].draw();
