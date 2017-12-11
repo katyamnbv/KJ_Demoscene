@@ -9,6 +9,7 @@ class Rain {
         this.w = _w;
     }
     void draw() {
+      stroke(0,0,255);
         line(this.x, this.y+10, this.x, this.y);
         fill(this.w);
         if (this.y >= height) {
@@ -27,7 +28,7 @@ void setup() {
     size(600, 600);
     k_array = new Rain[500];
     for (int i = 0; i < 500; i++) {
-        k_array[i] = new Rain(random(width), random(height), 10.0, color(255));
+        k_array[i] = new Rain(random(width), random(height), 10.0, color(0,0,255));
 
     }
 }
