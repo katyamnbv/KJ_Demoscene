@@ -40,7 +40,7 @@ void draw() {
 
     for (int i = 0; i < 500; i++) {
         k_array[i].draw();
-        k_array[i].down(random(5));
+        k_array[i].down(random(4));
 
     }
 }
