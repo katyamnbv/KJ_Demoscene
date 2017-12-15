@@ -7,8 +7,9 @@ FFT fft;
 
 float a = 0; 
 float f; 
-PImage k, stoc; 
+PImage k; 
 int Ni=0; 
+float v=0;
 
 class Stars { 
 float x, y, s; 
@@ -20,7 +21,9 @@ this.s = _s;
 this.w = _w; 
 } 
 void draw() { 
+strokeWeight(0.1);
 stroke(0); 
+fill(200+50*sin(this.s));
 ellipse(this.x,this.y,2,2); 
 fill(200+50*sin(this.s)); 
 if(this.y>=height){this.y=0;} 
@@ -42,9 +45,10 @@ this.q = _q;
 } 
 void draw() { 
 stroke(0, 0, 255); 
+strokeWeight(3);
 line(this.m, this.n + 10, this.m, this.n); 
 fill(this.q); 
-if (this.n >= height && millis()<=70000) { 
+if (this.n >= height && millis()<=68750) { 
 this.n = 0; 
 } 
 } 
@@ -56,17 +60,16 @@ this.n += _o;
 Rain[] k_array; 
 
 void setup() { 
-size(700, 500,P3D); 
-k = loadImage("IMG_3940.png"); 
-stoc = loadImage("IMG_38.PNG"); 
+fullScreen(P3D); 
+k = loadImage("IMG_38.png");   //основная картинка
 m_array = new Stars[250]; 
 for(int j=0; j<250; j++){ 
-m_array[j] = new Stars(random(width), random(170), 2.0, color(255)); 
+m_array[j] = new Stars(random(width), random(310), 2.0, color(255));    //массив дождя
 
 } 
 k_array = new Rain[500]; 
 for (int i = 0; i < 500; i++) { 
-k_array[i] = new Rain(random(width), random(height)+9, 10.0, color(0, 0, 255)); 
+k_array[i] = new Rain(random(width), random(height)+9, 10.0, color(0, 0, 255));    //массив звезд
 } 
 minim = new Minim(this); 
 jingle = minim.loadFile("09_animal_dzhaz_graffiti_v_zimnem_parke_myzuka.mp3", 1024); 
@@ -80,28 +83,34 @@ fft = new FFT(jingle.bufferSize(), jingle.sampleRate());
 
 
 void draw() { 
-a = a + 0.0023; 
-f=200*(cos(a)); 
+a = a + 0.0027; 
+f=160*(cos(a)); 
 if (a>1.57 && a<=10){f=0;} 
-background(f,200*(cos(a)),200*(cos(a))); 
-image(stoc, 0, 0, 700, 500); 
+background(f,160*(cos(a)),160*(cos(a))); 
+image(k, 0, 0, width,height); 
 Ni=Ni+1; 
 
 fft.forward(jingle.mix); 
 
-if(millis()>=108000) {for(int j=0; j<250; j++){ 
+if(millis()>=112000) {for(int j=0; j<250; j++){ 
 m_array[j].draw(); 
-m_array[j].up(random(fft.getBand(j)*100));} 
+m_array[j].up(random(0.2)+random(0.4));} 
 } 
 
 
 for (int i = 0; i < 500; i++) { 
 k_array[i].draw(); 
-k_array[i].down(fft.getBand(i)*100 ); 
+k_array[i].down(fft.getBand(i)*200 );      //дождь
 println(millis()); 
 println(Ni); 
 if(millis()>=128000) {exit();} 
 } 
 
-
+if((millis()<106000) && (millis()>=71000)){     
+for(int l=0;l<1000;l++){ 
+stroke(255,255,0); 
+fill(255,255,0); 
+ellipse(v-50,100,100+0.1*fft.getBand(l)/2,100+0.1*fft.getBand(l)/2);  //солнце
+v=v+0.005;}
+  }
 }
