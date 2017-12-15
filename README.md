@@ -5,4 +5,4 @@
 # **Наша идея:**
 
 ## Мы вдохновились питерской погодой (а так же музыкальной композицей *AnimalДжаZ*) и постарались показать, какой она бывает:umbrella::sweat_drops:
-![Снимок](https://github.com/Jakow4/KJ_Demoscene/commit/701e752ecff96f8d53ca4f18aecf78616679a15e )
+![Снимок сцены](https://github.com/Jakow4/KJ_Demoscene/commit/701e752ecff96f8d53ca4f18aecf78616679a15e )
