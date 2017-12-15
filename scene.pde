@@ -92,7 +92,7 @@ Ni=Ni+1;
 
 fft.forward(jingle.mix); 
 
-if(millis()>=112000) {for(int j=0; j<250; j++){ 
+if(millis()>=115000) {for(int j=0; j<250; j++){ 
 m_array[j].draw(); 
 m_array[j].up(random(0.2)+random(0.4));} 
 } 
@@ -103,7 +103,7 @@ k_array[i].draw();
 k_array[i].down(fft.getBand(i)*200 );      //дождь
 println(millis()); 
 println(Ni); 
-if(millis()>=128000) {exit();} 
+
 } 
 
 if((millis()<106000) && (millis()>=71000)){     
